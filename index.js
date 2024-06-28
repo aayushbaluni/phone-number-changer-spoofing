@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-
 const app = express();
 
 app.use(express.json());
@@ -14,7 +13,7 @@ const twilio = require('twilio');
 const client = new twilio(accountSid, authToken);
 
 app.post('/make-call', (req, res) => {
-    const toNumber = req.body.toNumber; // The phone number to call
+    const toNumber = req.body.toNumber; 
     const fromNumber = process.env.FAKE_NUMBER;
     const MyNumber=process.env.MY_NUMBER
 
@@ -22,7 +21,7 @@ app.post('/make-call', (req, res) => {
         .create({
             from: fromNumber,
             to: MyNumber,
-            url: process.env.REDIRECT_URI+`?phoneNumber=${toNumber}`   // this is your {backend url}/twiml?phoneNumber=toNumber
+            url: process.env.REDIRECT_URI+`?phoneNumber=${toNumber}`   
         })
         .then(call => {
             console.log(`Call will be  made to ${toNumber}`);
